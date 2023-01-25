@@ -1,7 +1,7 @@
 FROM python:3.11-alpine
 WORKDIR /app
 
-RUN apk add yt-dlp
+RUN apk add yt-dlp ffmpeg
 COPY app ./app
 COPY .env ./app
 
