@@ -2,7 +2,7 @@ FROM python:3.11-alpine
 WORKDIR /app
 
 RUN apk add yt-dlp ffmpeg
-COPY utils/* ./utils
+COPY utils/* ./utils/
 COPY .env .
 COPY requirements.txt .
 COPY main.py .
