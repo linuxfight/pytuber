@@ -84,27 +84,28 @@ async def on_callback_query(client: Client, callback_query: CallbackQuery):
 
     if item != 'Working' and item is not None:
         file = item
-        if download_type == 'video':
+        if download_type == 'audio':
             await client.send_chat_action(
                 chat_id=callback_query.message.chat.id,
-                action=enums.ChatAction.UPLOAD_VIDEO
+                action=enums.ChatAction.UPLOAD_AUDIO
             )
-            await client.send_video(
+            await client.send_audio(
                 chat_id=callback_query.message.chat.id,
                 reply_to_message_id=callback_query.message.id,
-                video=file
+                audio=file
             )
             return
         await client.send_chat_action(
             chat_id=callback_query.message.chat.id,
-            action=enums.ChatAction.UPLOAD_AUDIO
+            action=enums.ChatAction.UPLOAD_VIDEO
         )
-        await client.send_audio(
+        await client.send_video(
             chat_id=callback_query.message.chat.id,
             reply_to_message_id=callback_query.message.id,
-            audio=file
+            video=file
         )
         return
+
 
     with TemporaryDirectory() as temp:
         with yt_dlp.YoutubeDL() as ydl:
