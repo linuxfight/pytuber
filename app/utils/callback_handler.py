@@ -4,10 +4,10 @@ from tempfile import TemporaryDirectory
 from pathlib import Path
 from pyrogram import enums, Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from utils.storage import save, load
-from utils.download import download
-from utils.thumbnail import get_thumbnail
-from utils.edit_metadata import set_cover, set_artist, set_title
+from app.utils.storage import save, load
+from app.utils.download import download
+from app.utils.thumbnail import get_thumbnail
+from app.utils.edit_metadata import set_cover, set_artist, set_title
 
 video_formats = [135, 136, 298, 137, 299, 400, 401]
 storage: dict = load()
