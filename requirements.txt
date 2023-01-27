@@ -1,0 +1,7 @@
+yt-dlp
+pyrogram
+tgcrypto
+httpx
+aiofiles
+mutagen
+python-dotenv
