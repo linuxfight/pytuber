@@ -284,3 +284,8 @@ poetry.toml
 .ruff_cache/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,pycharm
+
+.idea/
+pytuber_bot.session
+pytuber_bot.session-journal
+save.json
