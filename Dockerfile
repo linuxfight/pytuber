@@ -2,10 +2,8 @@ FROM python:3.11-alpine
 WORKDIR /app
 
 RUN apk add yt-dlp ffmpeg
-COPY utils/* ./utils/
+COPY src/* .
 COPY .env .
-COPY requirements.txt .
-COPY main.py .
 
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 
