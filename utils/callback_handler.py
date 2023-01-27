@@ -9,7 +9,8 @@ from utils.download import download
 from utils.thumbnail import get_thumbnail
 from utils.edit_metadata import set_cover, set_artist, set_title
 
-video_formats = [135, 136, 298, 137, 299, 400, 401]
+video_formats = ['135', '136', '298', '137', '299', '400', '401']
+low_res = ['160', '133', '134']
 storage: dict = load()
 
 
@@ -28,23 +29,35 @@ def resolution_keyboard(video_id):
     for f in formats:
         if f['resolution'] == 'audio only':
             audio_formats.append(f)
-        for video_format in video_formats:
-            if str(video_format) == f['format_id']:
+        if f['format_id'] in video_formats:
+            file_size = int(f.get('filesize') / (1024 * 1024))
+            if file_size is None:
+                file_size = int(f.get('filesize_approx') / (1024 * 1024))
+            file_size += int(audio_formats[-1]['filesize'] / (1024 * 1024))
+            itag = f['format_id']
+            if file_size <= 2000:
+                buttons.append([
+                        InlineKeyboardButton(
+                            text=str(f['resolution']) + 'p ' + str(f['fps']) + 'fps ' + str(file_size) + 'MB',
+                            callback_data=f'{video_id}:{itag}'
+                        )
+                    ])
+
+    if buttons == []:
+        for f in formats:
+            if f['format_id'] in low_res:
                 file_size = int(f.get('filesize') / (1024 * 1024))
                 if file_size is None:
-                    file_size = int(f.get('filesize_approx') / (1024 * 1024))
+                    file_sizs = int(f.get('filesize_approx') / (1024 * 1024))
                 file_size += int(audio_formats[-1]['filesize'] / (1024 * 1024))
                 itag = f['format_id']
                 if file_size <= 2000:
-                    buttons.append(
-                        [
+                    buttons.append([
                             InlineKeyboardButton(
                                 text=str(f['resolution']) + 'p ' + str(f['fps']) + 'fps ' + str(file_size) + 'MB',
                                 callback_data=f'{video_id}:{itag}'
                             )
-                        ]
-                    )
-
+                        ])
     return InlineKeyboardMarkup(
         buttons
     )
