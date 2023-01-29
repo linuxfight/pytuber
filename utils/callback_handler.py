@@ -30,8 +30,9 @@ def resolution_keyboard(video_id):
         if f['resolution'] == 'audio only':
             audio_formats.append(f)
         if f['format_id'] in video_formats:
-            file_size = int(f.get('filesize') / (1024 * 1024))
-            if file_size is None:
+            if f.get('filesize'):
+                file_size = int(f.get('filesize') / (1024 * 1024))
+            else:
                 file_size = int(f.get('filesize_approx') / (1024 * 1024))
             file_size += int(audio_formats[-1]['filesize'] / (1024 * 1024))
             itag = f['format_id']
@@ -46,8 +47,9 @@ def resolution_keyboard(video_id):
     if buttons == []:
         for f in formats:
             if f['format_id'] in low_res:
+                if f.get('filesize'):
                 file_size = int(f.get('filesize') / (1024 * 1024))
-                if file_size is None:
+                else:
                     file_sizs = int(f.get('filesize_approx') / (1024 * 1024))
                 file_size += int(audio_formats[-1]['filesize'] / (1024 * 1024))
                 itag = f['format_id']
