@@ -135,6 +135,13 @@ async def on_callback_query(client: Client, callback_query: CallbackQuery):
             thumbnails = info['thumbnails']
             thumb = await get_thumbnail(thumbnails[-1]['url'], f'{Path(temp)}/thumb.jpg')
 
+        height = 0
+        width = 0
+        if download_type.isdigit():
+            for f in info['formats']:
+                if str(f['format_id']) == download_type:
+                    width = f['width']
+                    height = f['height']
         path = await download(f'https://youtu.be/{video_id}', download_type, f'{Path(temp)}/{video_id}.{ext}')
         set_cover(path, thumb)
         set_title(path, title)
@@ -164,7 +171,9 @@ async def on_callback_query(client: Client, callback_query: CallbackQuery):
                 reply_to_message_id=callback_query.message.id,
                 video=path,
                 thumb=thumb,
-                duration=duration
+                duration=duration,
+                width=width,
+                height=height
             )
 
 
