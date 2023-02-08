@@ -9,4 +9,4 @@ API_HASH=YOURAPIHASH
 BOT_TOKEN=YOURBOTTOKEN
 ```
 
-Then ```docker build -t pytuber .``` and ```docker run pytuber```
+Then ```docker build -t pytuber .``` and ```docker run -d --restart unless-stopped pytuber```
