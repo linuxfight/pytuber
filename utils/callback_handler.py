@@ -96,6 +96,7 @@ async def on_callback_query(client: Client, callback_query: CallbackQuery):
     await callback_query.answer(
         text='⚙ Обработка запроса'
     )
+    await save(storage)
 
     if item != 'Working' and item is not None:
         file = item
