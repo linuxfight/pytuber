@@ -1,0 +1,15 @@
+.env
+**/data/
+.DS_Store
+.idea/
+*.iml
+**/*.session
+**/*.session-journal
+**/__pycache__/
+.git/
+.gitignore
+docker-compose.yaml
+Dockerfile
+README.md
+save.json
+venv/
