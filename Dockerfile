@@ -7,5 +7,6 @@ RUN python -m venv /venv
 COPY src/ .
 RUN apk add yt-dlp ffmpeg
 RUN pip install -r requirements.txt
+RUN apk update && apk upgrade
 
 CMD ["python", "src/main.py"]
