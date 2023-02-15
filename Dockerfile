@@ -1,14 +1,11 @@
-FROM python:3.11-alpine
+FROM python:alpine
+
 WORKDIR /app
-
-RUN apk add yt-dlp ffmpeg
-COPY utils/* ./utils/
-COPY .env .
-COPY requirements.txt .
-COPY main.py .
-
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+RUN python -m venv /venv
 
+COPY src/ .
+RUN apk add yt-dlp ffmpeg
 RUN pip install -r requirements.txt
 
-CMD ["python", "main.py"]
+CMD ["python", "src/main.py"]
