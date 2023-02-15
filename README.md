@@ -4,7 +4,7 @@ Telegram bot for downloading videos from youtube.
 You need telegram api_hash and api_id to host bot.
 Create ```docker-compose.yaml``` in new directory:
 ```
-version: "1.0"
+version: "3"
 
 services:
     pytuber:
