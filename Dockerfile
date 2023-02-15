@@ -1,4 +1,4 @@
-FROM python:alpine
+FROM python:alpine3.17
 
 WORKDIR /app
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
