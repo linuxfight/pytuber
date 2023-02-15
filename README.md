@@ -2,11 +2,21 @@
 Telegram bot for downloading videos from youtube.
 
 You need telegram api_hash and api_id to host bot.
-Create ```.env``` file in bot directory, ```.env``` should look like:
+Create ```docker-compose.yaml``` in new directory:
 ```
-API_ID=YOURAPIID
-API_HASH=YOURAPIHASH
-BOT_TOKEN=YOURBOTTOKEN
+version: "1.0"
+
+services:
+    pytuber:
+      container_name: pytuber
+      image: linuxfight/pytuber:latest
+      environment:
+            - BOT_TOKEN=BOT_TOKEN
+            - API_HASH=API_HASH
+            - API_ID=API_ID
+      volumes:
+            - ".:/app"
+      restart: unless-stopped
 ```
 
-Then ```docker build -t pytuber .``` and ```docker run -d --restart unless-stopped pytuber```
+Run ```docker compose up``` or ```docker-compose up -d``` and you are ready to go.
