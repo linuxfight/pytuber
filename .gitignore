@@ -286,6 +286,6 @@ poetry.toml
 # End of https://www.toptal.com/developers/gitignore/api/python,pycharm
 
 .idea/
-pytuber_bot.session
-pytuber_bot.session-journal
+*.session
+*.session-journal
 save.json
