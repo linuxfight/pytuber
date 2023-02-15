@@ -14,8 +14,6 @@ services:
             - BOT_TOKEN=BOT_TOKEN
             - API_HASH=API_HASH
             - API_ID=API_ID
-      volumes:
-            - ".:/app"
       restart: unless-stopped
 ```
 
